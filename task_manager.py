@@ -1,8 +1,7 @@
 from datetime import datetime
 from pprint import pprint
 tasks = list()
-#task_col = dict()
-#tasks.append(task_col)
+task_col = dict()
 def add_task():
     task_name = input("Enter the task name: ")
     task_start = input("Enter the task starting date(DD/MM/YY):")
@@ -10,7 +9,6 @@ def add_task():
     task_end = input("Enter the task end date(DD/MM/YY):")
     date_end = datetime.strptime(task_end, "%d/%M/%Y").date()
     task_status = input("Enter tasks status: ") 
-    global task_col
     task_col = dict(task_name = task_name,task_start = task_start, task_end =task_end, task_status= task_status  )
     tasks.append(task_col)
     pprint("Task registerd successfully")
@@ -22,14 +20,16 @@ def view_tasks():
     else:
         pprint("Error,no tasks found.")
 
+#def delete_a_task():
 def delete_a_task():
-    for task_col in tasks:
-        task_name = input("Enter the task name ")
-        for task_name in task_col.keys():
-            task_col.clear()
-            pprint("Task deleted successfully")
-            return
-        pprint("Task not found.")
+    name = input("Enter task nam to delete: ")
+    for task in tasks:
+        if task['task_name'] == name:
+            tasks.remove(task)
+            print("Task deleted successfully")
+            break
+        else:
+            print("Task not found.")
 def delete_tasks():
     if tasks:
         tasks.clear()
