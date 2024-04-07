@@ -1,15 +1,16 @@
 from datetime import datetime
+from datetime import date
 from pprint import pprint
 tasks = list()
 task_col = dict()
 def add_task():
     task_name = input("Enter the task name: ")
-    task_start = input("Enter the task starting date(DD/MM/YY):")
-    date_st = datetime.strptime(task_start, "%d/%M/%Y").date()
+    start_dat = date.today()
+    Str = date.isoformat(start_dat)
     task_end = input("Enter the task end date(DD/MM/YY):")
     date_end = datetime.strptime(task_end, "%d/%M/%Y").date()
     task_status = input("Enter tasks status: ") 
-    task_col = dict(task_name = task_name,task_start = task_start, task_end =task_end, task_status= task_status  )
+    task_col = dict(task_name = task_name,start_dat = Str, task_end =task_end, task_status= task_status  )
     tasks.append(task_col)
     pprint("Task registerd successfully")
 
